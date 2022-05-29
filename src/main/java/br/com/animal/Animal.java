@@ -1,6 +1,7 @@
 package br.com.animal;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,10 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
 import br.com.adotante.Adotante;
 import br.com.funcionario.Funcionario;
 
@@ -29,7 +29,7 @@ public class Animal implements Serializable {
 	@Column(length = 30)
 	private String nome;
 	
-	private Timestamp nascimento;
+	private Date nascimento;
 	private Timestamp entrada;
 	
 	@Column(length = 2)
@@ -49,19 +49,21 @@ public class Animal implements Serializable {
 	@Column(length = 30)
 	private String pelagem;
 	
-	@OneToMany
-	private Set<String> imagens = new HashSet<String>();
+	@OneToMany(mappedBy = "animal")
+	private Set<ImagemAnimal> imagens = new HashSet<ImagemAnimal>();
 	
 	@ManyToOne
+	@JoinColumn(name = "id_adotante")
 	private Adotante adotante;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name = "id_funcionario")
 	private Funcionario funcionario;
 	
 	public Animal() {}
 	
-	public Animal(String nome, Timestamp nascimento, Timestamp entrada, int idade, String descricao, Double peso,
-			String porte, String tipo, String pelagem, Set<String> imagens, Funcionario funcionario) {
+	public Animal(String nome, Date nascimento, Timestamp entrada, int idade, String descricao, Double peso,
+			String porte, String tipo, String pelagem, Funcionario funcionario) {
 		super();
 		this.nome = nome;
 		this.nascimento = nascimento;
@@ -72,7 +74,6 @@ public class Animal implements Serializable {
 		this.porte = porte;
 		this.tipo = tipo;
 		this.pelagem = pelagem;
-		this.imagens = imagens;
 		this.funcionario = funcionario;
 	}
 
@@ -92,11 +93,11 @@ public class Animal implements Serializable {
 		this.nome = nome;
 	}
 
-	public Timestamp getNascimento() {
+	public Date getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(Timestamp nascimento) {
+	public void setNascimento(Date nascimento) {
 		this.nascimento = nascimento;
 	}
 
@@ -148,11 +149,11 @@ public class Animal implements Serializable {
 		this.tipo = tipo;
 	}
 
-	public Set<String> getImagens() {
+	public Set<ImagemAnimal> getImagens() {
 		return imagens;
 	}
 
-	public void setImagens(Set<String> imagens) {
+	public void setImagens(Set<ImagemAnimal> imagens) {
 		this.imagens = imagens;
 	}
 

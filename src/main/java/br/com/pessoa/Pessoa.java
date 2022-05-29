@@ -1,7 +1,6 @@
 package br.com.pessoa;
 
-import java.sql.Timestamp;
-
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -32,7 +31,7 @@ public class Pessoa {
 	@Column(length = 20)
 	private String genero;
 	
-	private Timestamp dataNasc;
+	private Date dataNasc;
 	
 	@Column(length = 20)
 	private String usuario;
@@ -43,7 +42,7 @@ public class Pessoa {
 	public Pessoa() {}
 
 	public Pessoa(String nome, String cpf, String logadouro, String numero, String bairro, String telefone,
-			String complemento, String genero, Timestamp dataNasc, String usuario, String senha) {
+			String complemento, String genero, Date dataNasc, String usuario, String senha) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -146,11 +145,11 @@ public class Pessoa {
 		this.genero = genero;
 	}
 
-	public Timestamp getDataNasc() {
+	public Date getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setDataNasc(Timestamp dataNasc) {
+	public void setDataNasc(Date dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 	

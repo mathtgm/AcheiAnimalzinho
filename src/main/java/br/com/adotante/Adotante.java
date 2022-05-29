@@ -38,8 +38,6 @@ public class Adotante implements Serializable{
 		this.animais = animais;
 	}
 
-
-
 	public int getId_adotante() {
 		return id_adotante;
 	}
