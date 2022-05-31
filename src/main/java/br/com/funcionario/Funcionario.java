@@ -11,10 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import br.com.animal.Animal;
 import br.com.pessoa.Pessoa;
 
 @Entity
+@DynamicUpdate
 public class Funcionario implements Serializable {
 
 	private static final long serialVersionUID = 1L;

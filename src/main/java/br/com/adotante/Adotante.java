@@ -11,10 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import br.com.animal.Animal;
 import br.com.pessoa.Pessoa;
 
 @Entity
+@DynamicUpdate
 public class Adotante implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -26,7 +29,7 @@ public class Adotante implements Serializable{
 	@Embedded
 	private Pessoa pessoa;
 	
-	@OneToMany(mappedBy = "adotante")
+	@OneToMany(mappedBy = "adotante", orphanRemoval = false)
 	private Set<Animal> animais = new HashSet<Animal>();
 	
 	public Adotante() {}

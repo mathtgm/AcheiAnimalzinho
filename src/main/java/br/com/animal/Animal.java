@@ -14,10 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.DynamicUpdate;
+
 import br.com.adotante.Adotante;
 import br.com.funcionario.Funcionario;
 
 @Entity
+@DynamicUpdate
 public class Animal implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -49,7 +53,7 @@ public class Animal implements Serializable {
 	@Column(length = 30)
 	private String pelagem;
 	
-	@OneToMany(mappedBy = "animal")
+	@OneToMany(mappedBy = "animal", orphanRemoval = true)
 	private Set<ImagemAnimal> imagens = new HashSet<ImagemAnimal>();
 	
 	@ManyToOne
