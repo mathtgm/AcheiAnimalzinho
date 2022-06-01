@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,7 +54,7 @@ public class Animal implements Serializable {
 	@Column(length = 30)
 	private String pelagem;
 	
-	@OneToMany(mappedBy = "animal", orphanRemoval = true)
+	@OneToMany(mappedBy = "animal", orphanRemoval = true, fetch = FetchType.EAGER)
 	private Set<ImagemAnimal> imagens = new HashSet<ImagemAnimal>();
 	
 	@ManyToOne
